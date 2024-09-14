@@ -2,6 +2,7 @@ package com.lite.curso.ms_producto;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/producto")
 public class ProductoController {
+
+    @Value("${app.producto.uno}")
+    private String pd1;
+
 
     @GetMapping("/")
     public List<Producto> getProductos() {
@@ -24,10 +29,10 @@ public class ProductoController {
     @GetMapping("/{id}")
     public Producto getProducto(@PathVariable Long id) {
         // logica de busqueda de producto
-        return new Producto(id.intValue(), "Producto 1", 100.0);
+        return new Producto(id.intValue(), pd1, 100.0);
     }
 
-    @GetMapping("/")
+    @GetMapping("/productss")
     public Producto getProductos(@RequestParam Long id, @RequestParam String nombre ) {
         // logica de busqueda de producto
         return new Producto(id.intValue(), nombre, 100.0);
