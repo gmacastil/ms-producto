@@ -1,43 +1,35 @@
-package com.lite.curso.ms_producto;
+package com.lite.curso.ms_producto.infraestructure.rest;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+
+import com.lite.curso.ms_producto.infraestructure.database.ProductApplication;
+import com.lite.curso.ms_producto.infraestructure.database.Producto;
 
 @RestController
 @RequestMapping("/producto")
 public class ProductoController {
 
-    @Value("${app.producto.uno}")
-    private String pd1;
-
+    @Autowired
+    private ProductApplication productApplication;
 
     @GetMapping("/")
     public List<Producto> getProductos() {
-        Producto producto = new Producto(1, "Producto 1", 100.0);
-        Producto producto2 = new Producto(2, "Producto 2", 200.0);
-        Producto producto3 = new Producto(3, "Producto 3", 300.0);
-        List<Producto> productos = List.of(producto, producto2, producto3);
-        return productos;
+        return productApplication.findAll();
     }
 
     @GetMapping("/{id}")
     public Producto getProducto(@PathVariable Long id) {
-        // logica de busqueda de producto
-        return new Producto(id.intValue(), pd1, 100.0);
+        return productApplication.findById(id).orElse(null);
     }
 
-    @GetMapping("/productss")
-    public Producto getProductos(@RequestParam Long id, @RequestParam String nombre ) {
-        // logica de busqueda de producto
-        return new Producto(id.intValue(), nombre, 100.0);
-    }
-
+  
 
     /*
     @PostMapping("/productos")
