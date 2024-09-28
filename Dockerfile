@@ -1,5 +1,5 @@
-FROM openjdk:21-jdk
+FROM base:1
 
-COPY target/*.jar /app.jar
+COPY target/*.jar app.jar
 
-CMD [ "java", "-jar", "/app.jar" ]
+CMD java $JAVA_OPTS -jar app.jar

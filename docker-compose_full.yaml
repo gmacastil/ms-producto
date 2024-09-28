@@ -1,0 +1,35 @@
+services:
+  ms-product-03:
+    image: mauron/ms-producto:7-postgres
+    container_name: ms-product-03
+    environment:
+      - PORT=8097
+      - URL=jdbc:postgresql://postgres12:5432/curso
+      - USER=postgres
+      - PASS_DB=123456
+      - JAVA_OPTS=-Xms256m -Xmx900m
+    ports:
+      - "8091:8097"
+    networks:
+      - sabado
+    restart: unless-stopped
+    depends_on:
+      - postgres12
+    
+
+  postgres12:
+    image: postgres:12.20-alpine3.20
+    container_name: postgres12
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=curso
+    ports:
+      - "5432:5432"
+    networks:
+      - sabado
+    restart: unless-stopped
+
+networks:
+  sabado:
+    external: true

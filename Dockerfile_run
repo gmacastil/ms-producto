@@ -1,0 +1,17 @@
+FROM openjdk:21-jdk
+
+RUN mkdir /app
+WORKDIR /app
+RUN adduser test
+
+COPY target/*.jar app.jar
+COPY run.sh run.sh
+RUN chmod +x run.sh
+RUN chown -R test:test /app
+
+USER test
+WORKDIR /app
+
+
+# Ejecutar cuando se inicie el contenedor
+ENTRYPOINT [ "sh", "/app/run.sh" ]

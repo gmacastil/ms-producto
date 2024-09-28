@@ -1,0 +1,18 @@
+services:
+  ms-product-03:
+    image: ms-producto:4-postgres
+    container_name: ms-product-03
+    environment:
+      - PORT=8097
+      - URL=jdbc:postgresql://postgres12:5432/curso
+      - USER=postgres
+      - PASS_DB=123456
+    ports:
+      - "8091:8097"
+    networks:
+      - sabado
+    restart: unless-stopped
+
+networks:
+  sabado:
+    external: true

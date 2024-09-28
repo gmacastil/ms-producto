@@ -1,0 +1,10 @@
+FROM alpine:3.12
+WORKDIR /app
+RUN wget https://download.java.net/java/early_access/alpine/21/binaries/openjdk-21-ea+21_linux-x64-musl_bin.tar.gz
+RUN tar -xvf openjdk-21-ea+21_linux-x64-musl_bin.tar.gz
+ENV PATH="/app/jdk-21/bin:${PATH}"
+ENV JAVA_HOME="/app/jdk-21"
+
+
+ENV JAVA_OPTS=""
+
