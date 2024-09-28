@@ -1,4 +1,4 @@
-FROM base:1
+FROM openjdk:21-jdk
 
 COPY target/*.jar app.jar
 

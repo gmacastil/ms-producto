@@ -9,13 +9,12 @@ services:
       - USER=postgres
       - PASS_DB=123456
       - JAVA_OPTS=-Xms256m -Xmx900m
-    ports:
-      - "8091:8097"
     networks:
       - sabado
     restart: unless-stopped
     depends_on:
       - postgres12
+
     
 
   postgres12:
@@ -25,11 +24,21 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=curso
-    ports:
-      - "5432:5432"
     networks:
       - sabado
     restart: unless-stopped
+
+  nginx:
+    container_name: proxy
+    image: nginx:latest
+    ports:
+        - "8443:443"
+    volumes:
+        - ./nginx/tls:/etc/nginx/certs/
+    depends_on:
+        - ms-product-03
+    
+    
 
 networks:
   sabado:
