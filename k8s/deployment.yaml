@@ -13,9 +13,11 @@ spec:
       labels:
         app: ms-product-03
     spec:
+      imagePullSecrets:
+        - name: acr-login
       containers:
       - name: ms-product-03
-        image: mauron/ms-producto:7-postgres
+        image: registrysabado.azurecr.io/ms-producto:9-postgres
         envFrom:
         - configMapRef:
             name: postgres-config
@@ -23,4 +25,22 @@ spec:
             name: postgres-secret
         ports:
         - containerPort: 8080
-        
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 35
+          periodSeconds: 10
+        resources:
+          limits:
+            memory: "412Mi"
+            cpu: "700m"
+          requests:
+            memory: "200Mi"
+            cpu: "200m"

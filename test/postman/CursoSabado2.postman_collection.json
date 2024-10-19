@@ -21,12 +21,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8099/producto/new",
+					"raw": "http://172.171.157.101:8091/producto/new",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"172.171.157.101"
 					],
-					"port": "8099",
+					"port": "8091",
 					"path": [
 						"producto",
 						"new"
@@ -53,12 +53,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8099/producto/",
+					"raw": "http://172.171.157.101:8091/producto/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"172.171.157.101"
 					],
-					"port": "8099",
+					"port": "8091",
 					"path": [
 						"producto",
 						""
@@ -120,12 +120,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8099/producto/{{id}}",
+					"raw": "http://172.171.157.101:8091/producto/{{id}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"172.171.157.101"
 					],
-					"port": "8099",
+					"port": "8091",
 					"path": [
 						"producto",
 						"{{id}}"

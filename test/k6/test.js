@@ -5,5 +5,5 @@ export const options = {
 };
 
 export default function () {
-  const response = http.get("http://localhost:8099/producto/");
+  const response = http.get("http://172.171.157.101:8091/producto/");
 }

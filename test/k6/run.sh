@@ -1,0 +1,1 @@
+sudo k6 run --vus 50 --duration 30s test.js
