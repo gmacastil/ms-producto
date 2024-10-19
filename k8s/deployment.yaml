@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-product-03
+  namespace: sabado
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-product-03
+  template:
+    metadata:
+      labels:
+        app: ms-product-03
+    spec:
+      containers:
+      - name: ms-product-03
+        image: mauron/ms-producto:7-postgres
+        env:
+        - name: URL
+          value: jdbc:postgresql://postgres:5432/curso
+        - name: USER
+          value: postgres
+        - name: PASS_DB
+          value: "123456789"
+        ports:
+        - containerPort: 8080
+        

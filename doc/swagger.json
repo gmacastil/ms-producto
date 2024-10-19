@@ -1,0 +1,60 @@
+{
+  "openapi": "3.0.1",
+  "info": { "title": "OpenAPI definition", "version": "v0" },
+  "servers": [{ "url": "http://localhost:8097", "description": "Generated server url" }],
+  "paths": {
+    "/producto/update": {
+      "put": {
+        "tags": ["producto-controller"],
+        "operationId": "updateProductoBody",
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Producto" } } }, "required": true },
+        "responses": { "200": { "description": "OK", "content": { "*/*": { "schema": { "$ref": "#/components/schemas/Producto" } } } } }
+      }
+    },
+    "/producto/update/{id}": {
+      "put": {
+        "tags": ["producto-controller"],
+        "operationId": "updateProducto",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Producto" } } }, "required": true },
+        "responses": { "200": { "description": "OK", "content": { "*/*": { "schema": { "$ref": "#/components/schemas/Producto" } } } } }
+      }
+    },
+    "/producto/new": {
+      "post": {
+        "tags": ["producto-controller"],
+        "operationId": "addProducto",
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Producto" } } }, "required": true },
+        "responses": { "200": { "description": "OK", "content": { "*/*": { "schema": { "$ref": "#/components/schemas/Producto" } } } } }
+      }
+    },
+    "/producto/{id}": {
+      "get": {
+        "tags": ["producto-controller"],
+        "operationId": "getProducto",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "responses": { "200": { "description": "OK", "content": { "*/*": { "schema": { "$ref": "#/components/schemas/Producto" } } } } }
+      }
+    },
+    "/producto/": {
+      "get": {
+        "tags": ["producto-controller"],
+        "operationId": "getProductos",
+        "responses": { "200": { "description": "OK", "content": { "*/*": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Producto" } } } } } }
+      }
+    },
+    "/producto/delete/{id}": {
+      "delete": {
+        "tags": ["producto-controller"],
+        "operationId": "deleteProducto",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Producto": { "type": "object", "properties": { "id": { "type": "integer", "format": "int64" }, "nombre": { "type": "string" }, "precio": { "type": "number", "format": "double" } } }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-product-03
+  namespace: sabado
+spec:
+  selector:
+    app: ms-product-03
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8080

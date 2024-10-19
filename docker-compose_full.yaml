@@ -16,6 +16,8 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres12
+    volumes:
+      - /home/alecasti/Documents/folder:/ext
     
 
   postgres12:
@@ -30,6 +32,7 @@ services:
     networks:
       - sabado
     restart: unless-stopped
+
 
 networks:
   sabado:
