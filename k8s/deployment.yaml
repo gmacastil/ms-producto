@@ -16,13 +16,11 @@ spec:
       containers:
       - name: ms-product-03
         image: mauron/ms-producto:7-postgres
-        env:
-        - name: URL
-          value: jdbc:postgresql://postgres:5432/curso
-        - name: USER
-          value: postgres
-        - name: PASS_DB
-          value: "123456789"
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        - secretRef:
+            name: postgres-secret
         ports:
         - containerPort: 8080
         
