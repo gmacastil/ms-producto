@@ -9,8 +9,8 @@ on:
 jobs:
 
   build:
-
-    runs-on: ubuntu-latest
+    
+    runs-on: profe
 
     steps:
     - uses: actions/checkout@v4
