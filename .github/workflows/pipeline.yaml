@@ -27,3 +27,11 @@ jobs:
       
     - name: Build the Docker image
       run: docker build . -t ms-producto:${{ github.run_number}}
+
+    - name: Build the Docker image
+      run: docker login registrysabado.azurecr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
+
+    - name: Push the Docker image
+      run:  |
+        docker tag ms-producto:${{ github.run_number}} registrysabado.azurecr.io/ms-producto:${{ github.run_number}} 
+        docker push registrysabado.azurecr.io/ms-producto:${{ github.run_number}}
