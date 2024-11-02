@@ -42,17 +42,9 @@ jobs:
     needs: build
     steps:
 
-    - uses: azure/login@v2
+    - uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.AZURE_CREDENTIALS }}
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        args: get pods
 
-    - uses: Azure/aks-set-context@v4
-      with:
-        cluster-name: clustersprint
-        resource-group: curso-sep
-
-    - uses: Azure/k8s-deploy@v5
-      with:
-        action: deploy
-        manifests: |
-            k8s/*.yaml
