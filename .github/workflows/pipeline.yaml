@@ -45,7 +45,7 @@ jobs:
     - name: Create kubeconfig
       run: |
         mkdir ${HOME}/.kube
-        echo ${{ secrets.AZURE_CREDENTIALS }} > ${HOME}/.kube/config
+        echo ${{ secrets.AZURE_CREDENTIALS }} | base64 --decode > ${HOME}/.kube/config
         cat ${HOME}/.kube/config
     
     - name: Deploy to K8s
