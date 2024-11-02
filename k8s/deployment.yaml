@@ -44,3 +44,24 @@ spec:
           requests:
             memory: "200Mi"
             cpu: "200m"
+        volumeMounts:
+          - name: ms-product-03-pv-storage
+            mountPath: /u01
+
+      volumes:
+        - name: ms-product-03-pv-storage
+          persistentVolumeClaim:
+            claimName: ms-product-03-pv-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ms-product-03-pv-claim
+  namespace: sabado
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

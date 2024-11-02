@@ -6,8 +6,8 @@ metadata:
 spec:
   selector:
     app: ms-product-03
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8091
+      port: 8080
       targetPort: 8080

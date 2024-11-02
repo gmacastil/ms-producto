@@ -7,5 +7,4 @@ data:
   USER: postgres
   URL: jdbc:postgresql://postgres:5432/curso
   TZ: America/Lima
-  JAVA_OPTS: -Xmx240m
-  
+  JAVA_OPTS: -Xmx230m
