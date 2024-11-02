@@ -42,9 +42,11 @@ jobs:
     needs: build
     steps:
 
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.AZURE_CREDENTIALS }}
-      with:
-        args: get pods
-
+    - name: Create kubeconfig
+      run: |
+        mkdir ${HOME}/.kube
+        echo ${{ secrets.AZURE_CREDENTIALS }} > ${HOME}/.kube/config
+        cat ${HOME}/.kube/config
+    
+    - name: Deploy to K8s
+      run: kubectl apply -f k8s/
