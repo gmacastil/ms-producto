@@ -35,3 +35,24 @@ jobs:
       run:  |
         docker tag ms-producto:${{ github.run_number}} registrysabado.azurecr.io/ms-producto:${{ github.run_number}} 
         docker push registrysabado.azurecr.io/ms-producto:${{ github.run_number}}
+
+  deploy:
+       
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+
+    - uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: Azure/aks-set-context@v4
+      with:
+        cluster-name: clustersprint
+        resource-group: curso-sep
+
+    - uses: Azure/k8s-deploy@v5
+      with:
+        action: deploy
+        manifests: |
+            k8s/*.yaml
