@@ -17,7 +17,7 @@ spec:
         - name: acr-login
       containers:
       - name: ms-product-03
-        image: registrysabado.azurecr.io/5
+        image: registrysabado.azurecr.io/ms-producto:5
         envFrom:
         - configMapRef:
             name: postgres-config
