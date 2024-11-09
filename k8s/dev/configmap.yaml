@@ -6,5 +6,5 @@ metadata:
 data:
   USER: postgres
   URL: jdbc:postgresql://postgres:5432/curso
-  TZ: America/Lima
+  TZ: America/Bogota
   JAVA_OPTS: -Xmx230m

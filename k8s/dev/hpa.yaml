@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: ms-product-03
   minReplicas: 1
-  maxReplicas: 1
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
