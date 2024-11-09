@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-product-03
+  namespace: sabado
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-product-03
+  template:
+    metadata:
+      labels:
+        app: ms-product-03
+    spec:
+      imagePullSecrets:
+        - name: acr-login
+      containers:
+      - name: ms-product-03
+        image: registrysabado.azurecr.io/ms-producto:9-postgres
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        - secretRef:
+            name: postgres-secret
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 35
+          periodSeconds: 10
+        resources:
+          limits:
+            memory: "412Mi"
+            cpu: "700m"
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
+        volumeMounts:
+          - name: ms-product-03-pv-storage
+            mountPath: /u01
+
+      volumes:
+        - name: ms-product-03-pv-storage
+          persistentVolumeClaim:
+            claimName: ms-product-03-pv-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ms-product-03-pv-claim
+  namespace: sabado
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

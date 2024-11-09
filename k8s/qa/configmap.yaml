@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: sabado
+data:
+  USER: qa
+  URL: jdbc:postgresql://postgres-qa:5432/qacurso
+  TZ: America/Lima
+  JAVA_OPTS: -Xmx230m

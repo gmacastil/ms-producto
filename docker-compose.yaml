@@ -1,18 +1,22 @@
 services:
   ms-product-03:
-    image: registrysabado.azurecr.io/ms-producto:7-postgres
+    image: ms-producto:8
     container_name: ms-product-03
     environment:
       #- PORT=8097
       - URL=jdbc:postgresql://postgres12:5432/curso
       - USER=postgres
       - PASS_DB=123456
+      - LOGSTASH_URL=logstash:9201
     ports:
       - "8091:8080"
     networks:
       - sabado
+      - single_elk
     restart: unless-stopped
 
 networks:
   sabado:
+    external: true
+  single_elk:
     external: true

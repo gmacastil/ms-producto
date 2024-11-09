@@ -1,0 +1,25 @@
+services:
+
+  database-mysql-8:
+    container_name: database-mysql-8
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.4.3
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'mydb'
+      MYSQL_USER: 'yvivas'
+      MYSQL_PASSWORD: 'test1234'
+      MYSQL_ROOT_PASSWORD: 'j3sus333'
+    ports:
+      - '3307:3307'
+    expose:
+      - '3307'
+    networks:
+      - litereto2
+    volumes:
+    
+      - init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  my-db:
+    driver: local
